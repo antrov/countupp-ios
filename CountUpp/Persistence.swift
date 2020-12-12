@@ -13,10 +13,17 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            switch Bool.random() {
+            case true:
+                ClickerEntity.random(context: viewContext)
+            
+            case false:
+                CounterEntity.random(context: viewContext)
+            }
         }
+        
         do {
             try viewContext.save()
         } catch {
@@ -52,4 +59,49 @@ struct PersistenceController {
             }
         })
     }
+}
+
+extension CountableEntity {
+    
+    func randomize() {
+        id = UUID()
+        title = "random title"
+        createdAt = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
+        index = 0
+        theme = "test theme"
+    }
+    
+}
+
+extension ClickerEntity {
+    
+    static func random(context: NSManagedObjectContext) {
+        let entity = ClickerEntity(context: context)
+        
+        entity.randomize()
+        entity.mode = Int16([-1, 1].randomElement()!)
+        entity.initial = .random(in: 0...100)
+        
+        let events = (0...Int.random(in: 0...100)).map { _ -> EventEntity in
+            let event = EventEntity(context: context)
+            event.timestamp = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
+            return event
+        }
+        
+        entity.addToEvents(NSSet(array: events))
+    }
+    
+}
+
+extension CounterEntity {
+    
+    static func random(context: NSManagedObjectContext) {
+        let entity = CounterEntity(context: context)
+        
+        entity.randomize()
+        entity.date = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
+        entity.precision = 1
+        entity.smartFormat = Bool.random()
+    }
+    
 }

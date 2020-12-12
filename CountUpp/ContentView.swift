@@ -12,15 +12,15 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \CountableEntity.index, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var items: FetchedResults<CountableEntity>
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                    Text("Item at \(item.createdAt ?? Date(), formatter: itemFormatter), \(item.title ?? "empty")")
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -38,9 +38,16 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
+            for _ in 0..<10 {
+                switch Bool.random() {
+                case true:
+                    ClickerEntity.random(context: viewContext)
+                
+                case false:
+                    CounterEntity.random(context: viewContext)
+                }
+            }
+            
             do {
                 try viewContext.save()
             } catch {
