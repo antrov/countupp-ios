@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B50" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="ClickerEntity" representedClassName="ClickerEntity" parentEntity="CountableEntity" syncable="YES" codeGenerationType="class">
         <attribute name="initial" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mode" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventEntity" inverseName="clicker" inverseEntity="EventEntity"/>
     </entity>
     <entity name="CountableEntity" representedClassName="CountableEntity" syncable="YES" codeGenerationType="class">
@@ -10,7 +10,7 @@
         <attribute name="id" attributeType="UUID" defaultValueString="A137AEA0-D3E5-4A1D-9C2A-034F5B4E1605" usesScalarValueType="NO"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="theme" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="CounterEntity" representedClassName="CounterEntity" parentEntity="CountableEntity" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="629464320" usesScalarValueType="NO"/>
@@ -22,7 +22,7 @@
         <relationship name="clicker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClickerEntity" inverseName="events" inverseEntity="ClickerEntity"/>
     </entity>
     <elements>
-        <element name="ClickerEntity" positionX="105.75634765625" positionY="10.810546875" width="128" height="73"/>
+        <element name="ClickerEntity" positionX="105.75634765625" positionY="10.810546875" width="128" height="74"/>
         <element name="CountableEntity" positionX="-57.87652587890625" positionY="-82.7872314453125" width="128" height="104"/>
         <element name="CounterEntity" positionX="-189.4837646484375" positionY="13.88275146484375" width="128" height="88"/>
         <element name="EventEntity" positionX="77.91558837890625" positionY="148.9706420898438" width="128" height="59"/>

@@ -15,25 +15,52 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \CountableEntity.index, ascending: true)],
         animation: .default)
     private var items: FetchedResults<CountableEntity>
+    
+    @State private var showOrderSheet = false
+    @State private var selectedItem: CountableEntity? = nil
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    Text("Item at \(item.createdAt ?? Date(), formatter: itemFormatter), \(item.title ?? "empty")")
+                    Button(action: {
+                        selectedItem = item
+                        showOrderSheet = true
+                    }, label: {
+                        VStack {
+                            Text(item.title ?? "empty")
+                                .font(.footnote)
+                            
+                            switch item {
+                            case is CounterEntity:
+                                Text("\((item as! CounterEntity).date!, formatter: itemFormatter)")
+                                    .font(.largeTitle)
+                            case is ClickerEntity:
+                                Text("\((item as! ClickerEntity).value)")
+                                    .font(.largeTitle)
+                            default:
+                                EmptyView()
+                            }
+                        }
+                        
+                    })
+                    .frame(maxWidth: .infinity)
                 }
                 .onDelete(perform: deleteItems)
+                
+            }
+            .sheet(isPresented: $showOrderSheet) {
+                DetailsView(item: $selectedItem)
             }
             .toolbar {
-//                #if os(iOS)
-//                EditButton()
-//                #endif
-
+                EditButton()
+                
                 Button(action: addItem) {
                     Label("Add Item", systemImage: "plus")
                 }
             }
-            }
+            
+        }
     }
 
     private func addItem() {

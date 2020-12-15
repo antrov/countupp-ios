@@ -13,6 +13,7 @@
 		AF8D9C952582669E0094A0D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8D9C942582669E0094A0D3 /* Preview Assets.xcassets */; };
 		AF8D9C972582669E0094A0D3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D9C962582669E0094A0D3 /* Persistence.swift */; };
 		AF8D9C9A2582669E0094A0D3 /* CountUpp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF8D9C982582669E0094A0D3 /* CountUpp.xcdatamodeld */; };
+		AFA3EA932587743D00CEEF4E /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3EA922587743D00CEEF4E /* DetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AF8D9C962582669E0094A0D3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		AF8D9C992582669E0094A0D3 /* CountUpp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CountUpp.xcdatamodel; sourceTree = "<group>"; };
 		AF8D9C9B2582669E0094A0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFA3EA922587743D00CEEF4E /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				AF8D9C8D2582669B0094A0D3 /* CountUppApp.swift */,
 				AF8D9C8F2582669B0094A0D3 /* ContentView.swift */,
+				AFA3EA922587743D00CEEF4E /* DetailsView.swift */,
 				AF8D9C912582669E0094A0D3 /* Assets.xcassets */,
 				AF8D9C962582669E0094A0D3 /* Persistence.swift */,
 				AF8D9C9B2582669E0094A0D3 /* Info.plist */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF8D9C972582669E0094A0D3 /* Persistence.swift in Sources */,
+				AFA3EA932587743D00CEEF4E /* DetailsView.swift in Sources */,
 				AF8D9C902582669B0094A0D3 /* ContentView.swift in Sources */,
 				AF8D9C8E2582669B0094A0D3 /* CountUppApp.swift in Sources */,
 				AF8D9C9A2582669E0094A0D3 /* CountUpp.xcdatamodeld in Sources */,

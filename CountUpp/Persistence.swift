@@ -15,13 +15,13 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         for _ in 0..<10 {
-            switch Bool.random() {
-            case true:
+//            switch Bool.random() {
+//            case true:
                 ClickerEntity.random(context: viewContext)
-            
-            case false:
-                CounterEntity.random(context: viewContext)
-            }
+//
+//            case false:
+//                CounterEntity.random(context: viewContext)
+//            }
         }
         
         do {
@@ -63,9 +63,19 @@ struct PersistenceController {
 
 extension CountableEntity {
     
+    private static let titles: [String] = [
+        "Something happend",
+        "Occurences of somthing",
+        "End of thee world",
+        "Days I want to die",
+        "Days I am happy to live",
+        "Days in human shell",
+        "Leave everything and go to Bieszczady"
+    ]
+    
     func randomize() {
         id = UUID()
-        title = "random title"
+        title = Self.titles.randomElement()
         createdAt = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
         index = 0
         theme = "test theme"
@@ -79,7 +89,7 @@ extension ClickerEntity {
         let entity = ClickerEntity(context: context)
         
         entity.randomize()
-        entity.mode = Int16([-1, 1].randomElement()!)
+//        entity.mode = Int16([-1, 1].randomElement()!)
         entity.initial = .random(in: 0...100)
         
         let events = (0...Int.random(in: 0...100)).map { _ -> EventEntity in
