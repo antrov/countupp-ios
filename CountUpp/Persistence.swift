@@ -75,7 +75,7 @@ extension CountableEntity {
     
     func randomize() {
         id = UUID()
-        title = Self.titles.randomElement()
+        title = Self.titles.randomElement()!
         createdAt = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
         index = 0
         theme = "test theme"
@@ -85,7 +85,7 @@ extension CountableEntity {
 
 extension ClickerEntity {
     
-    static func random(context: NSManagedObjectContext) {
+    static func random(context: NSManagedObjectContext) -> ClickerEntity {
         let entity = ClickerEntity(context: context)
         
         entity.randomize()
@@ -99,19 +99,23 @@ extension ClickerEntity {
         }
         
         entity.addToEvents(NSSet(array: events))
+        
+        return entity
     }
     
 }
 
 extension CounterEntity {
     
-    static func random(context: NSManagedObjectContext) {
+    static func random(context: NSManagedObjectContext) -> CounterEntity {
         let entity = CounterEntity(context: context)
         
         entity.randomize()
         entity.date = Date(timeIntervalSinceNow: .random(in: -31390...31390) * 1000)
         entity.precision = 1
         entity.smartFormat = Bool.random()
+        
+        return entity
     }
     
 }

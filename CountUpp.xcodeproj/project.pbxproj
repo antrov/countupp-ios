@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF38676C2595478C00E6A8F3 /* EventsCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38676B2595478C00E6A8F3 /* EventsCalendar.swift */; };
+		AF38676F259615C200E6A8F3 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38676E259615C200E6A8F3 /* EditorView.swift */; };
+		AF5742362593E63000D1C4B8 /* CountableEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5742342593E63000D1C4B8 /* CountableEntity+CoreDataClass.swift */; };
+		AF5742372593E63000D1C4B8 /* CountableEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5742352593E63000D1C4B8 /* CountableEntity+CoreDataProperties.swift */; };
+		AF65F1812596920C00EA03E5 /* CountableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF65F1802596920C00EA03E5 /* CountableCardView.swift */; };
 		AF8D9C8E2582669B0094A0D3 /* CountUppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D9C8D2582669B0094A0D3 /* CountUppApp.swift */; };
 		AF8D9C902582669B0094A0D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D9C8F2582669B0094A0D3 /* ContentView.swift */; };
 		AF8D9C922582669E0094A0D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8D9C912582669E0094A0D3 /* Assets.xcassets */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF38676B2595478C00E6A8F3 /* EventsCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendar.swift; sourceTree = "<group>"; };
+		AF38676E259615C200E6A8F3 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		AF5742342593E63000D1C4B8 /* CountableEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountableEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AF5742352593E63000D1C4B8 /* CountableEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountableEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AF65F1802596920C00EA03E5 /* CountableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountableCardView.swift; sourceTree = "<group>"; };
 		AF8D9C8A2582669B0094A0D3 /* CountUpp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountUpp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8D9C8D2582669B0094A0D3 /* CountUppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountUppApp.swift; sourceTree = "<group>"; };
 		AF8D9C8F2582669B0094A0D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,8 +69,13 @@
 			isa = PBXGroup;
 			children = (
 				AF8D9C8D2582669B0094A0D3 /* CountUppApp.swift */,
+				AF5742342593E63000D1C4B8 /* CountableEntity+CoreDataClass.swift */,
+				AF5742352593E63000D1C4B8 /* CountableEntity+CoreDataProperties.swift */,
 				AF8D9C8F2582669B0094A0D3 /* ContentView.swift */,
+				AF65F1802596920C00EA03E5 /* CountableCardView.swift */,
 				AFA3EA922587743D00CEEF4E /* DetailsView.swift */,
+				AF38676E259615C200E6A8F3 /* EditorView.swift */,
+				AF38676B2595478C00E6A8F3 /* EventsCalendar.swift */,
 				AF8D9C912582669E0094A0D3 /* Assets.xcassets */,
 				AF8D9C962582669E0094A0D3 /* Persistence.swift */,
 				AF8D9C9B2582669E0094A0D3 /* Info.plist */,
@@ -147,10 +162,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF38676F259615C200E6A8F3 /* EditorView.swift in Sources */,
+				AF5742362593E63000D1C4B8 /* CountableEntity+CoreDataClass.swift in Sources */,
 				AF8D9C972582669E0094A0D3 /* Persistence.swift in Sources */,
 				AFA3EA932587743D00CEEF4E /* DetailsView.swift in Sources */,
+				AF65F1812596920C00EA03E5 /* CountableCardView.swift in Sources */,
 				AF8D9C902582669B0094A0D3 /* ContentView.swift in Sources */,
 				AF8D9C8E2582669B0094A0D3 /* CountUppApp.swift in Sources */,
+				AF5742372593E63000D1C4B8 /* CountableEntity+CoreDataProperties.swift in Sources */,
+				AF38676C2595478C00E6A8F3 /* EventsCalendar.swift in Sources */,
 				AF8D9C9A2582669E0094A0D3 /* CountUpp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

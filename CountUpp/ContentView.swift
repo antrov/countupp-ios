@@ -9,83 +9,69 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
+    enum ActiveSheet: Identifiable {
+        case details, creator
+        
+        var id: Int {
+            hashValue
+        }
+    }
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \CountableEntity.index, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \CountableEntity.createdAt, ascending: true)],
         animation: .default)
     private var items: FetchedResults<CountableEntity>
     
-    @State private var showOrderSheet = false
-    @State private var selectedItem: CountableEntity? = nil
+    @State private var presentedSheet: ActiveSheet?
+    @State private var selectedItem: CountableEntity = CountableEntity()
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    Button(action: {
-                        selectedItem = item
-                        showOrderSheet = true
-                    }, label: {
-                        VStack {
-                            Text(item.title ?? "empty")
-                                .font(.footnote)
-                            
-                            switch item {
-                            case is CounterEntity:
-                                Text("\((item as! CounterEntity).date!, formatter: itemFormatter)")
-                                    .font(.largeTitle)
-                            case is ClickerEntity:
-                                Text("\((item as! ClickerEntity).value)")
-                                    .font(.largeTitle)
-                            default:
-                                EmptyView()
-                            }
+            ScrollView {
+                LazyVStack(alignment: .center, spacing: 24) {
+                    ForEach(items) { item in
+                        CountableCardView(item: .constant(item))
+                        .onTapGesture {
+                            selectedItem = item
+                            presentedSheet = .details
                         }
-                        
-                    })
-                    .frame(maxWidth: .infinity)
+                        .onLongPressGesture {
+                            guard let clicker = item as? ClickerEntity else { return }
+                            
+                            let event = EventEntity(context: viewContext)
+                            event.clicker = clicker
+                            event.timestamp = Date()
+                            
+                            clicker.addToEvents(event)
+                            clicker.value += 1
+                            
+                            try! viewContext.save()
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
-                
+                .padding([.all], 16)
             }
-            .sheet(isPresented: $showOrderSheet) {
-                DetailsView(item: $selectedItem)
+            .sheet(item: $presentedSheet) { item in
+                switch item {
+                case .details: DetailsView(item: $selectedItem)
+                case .creator: EditorView()
+                }
             }
+            .navigationTitle("Countupp")
             .toolbar {
-                EditButton()
-                
-                Button(action: addItem) {
+                Button(action: {
+                    presentedSheet = .creator
+                }, label: {
                     Label("Add Item", systemImage: "plus")
-                }
-            }
-            
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            for _ in 0..<10 {
-                switch Bool.random() {
-                case true:
-                    ClickerEntity.random(context: viewContext)
-                
-                case false:
-                    CounterEntity.random(context: viewContext)
-                }
-            }
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                })
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
@@ -102,12 +88,7 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
