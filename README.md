@@ -6,6 +6,6 @@ Main aim of this project was validation of SwiftUI production readiness. As it t
 
 **Despite the fact, this project was ridiculously simple, creating it with SwiftUI was not.**
 
-<img src="https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/dashboard.png" width="280">
-<img src="https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/new_clicker.png " width="280">
-<img src="https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/new_counter.png" width="280">
+![Dashboard](https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/dashboard.png)
+![Clicker](https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/new_clicker.png)
+![Counter](https://raw.githubusercontent.com/antrov/countupp-ios/main/docs/new_counter.png)
